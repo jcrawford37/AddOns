@@ -1,0 +1,30 @@
+Need a table (maybe with nested tables) per line of procRate, Trigger, Strings to print
+Need to dynamically create/modify/delete tables and/or table items
+
+Probably need a table to hold all the tables for each rule (Maybe "allRules")
+
+need to keep account of number of strings inside the table/array of strings to print
+maybe an int argc Char **argv[] thing
+
+Prototype Table Structure:
+
+ruleTable
+
+Need a trigger  			(maybe a few static events to start testing with)
+Need a min/max procRate  	(Should this be drop down or text field)
+Need count of array items  	(like argc)
+Need array of Strings      	(like argv[])
+
+
+
+
+
+GUI Stuff
+Parent Window
+No config =  Show "+" button
+"+" button onClick creates frame
+frame has "Trigger" DropDown, "percent proc" text field, "Say This" field
+say this should have a "+" icon.
+
+existing frames populate
+"+" button that creates a new frame
