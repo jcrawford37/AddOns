@@ -1,0 +1,6 @@
+## Interface: 11200
+## Title: WhisperTech!!
+## Notes: Afk Buddy? We'll handle that.
+## Author: Soul.
+WhisperTech.lua
+WhisperTech.xml

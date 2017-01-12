@@ -1,0 +1,32 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" 
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                   xsi:schemaLocation="http://www.blizzard.com/wow/ui/ 
+                   ..\..\FrameXML\UI.xsd">
+
+	<Script file="WhisperTech.lua"/>
+	
+	
+	
+	
+	<Frame name="WTMain" parent="UIParent" >
+		<Size>
+			<AbsDimension x="1" y="1"/>
+		</Size>
+		<Anchors>
+			<!-- <Anchor point="TOP" relativeTo="UIParent"/> -->
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				WhisperTech_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				WhisperTech_Respond();
+			</OnEvent>
+		</Scripts>
+		
+		
+		
+	</Frame>
+</Ui>
+
+<!-- self, event, msg, author, ... -->

@@ -1,0 +1,49 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" 
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                   xsi:schemaLocation="http://www.blizzard.com/wow/ui/ 
+                   ..\..\FrameXML\UI.xsd">
+
+	<Script file="GraySale.lua"/>
+	
+	
+	
+	
+	<Frame name="GraySaleMain" parent="UIParent" >
+		<Size>
+			<AbsDimension x="1" y="1"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOP" relativeTo="UIParent"/>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				GraySale_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				<!-- GraySale_SellStuff(); -->
+			</OnEvent>
+			<OnUpdate>
+				GraySale_OnUpdate();
+			</OnUpdate>
+		</Scripts>
+		
+		<Frames>
+			<Button name="$parentSellGrays" parent="MerchantFrame" inherits="UIPanelButtonTemplate" text="Sell Junk">
+				<Size x="70" y="41" />
+				<Anchors> 
+					<Anchor point="LEFT" relativeTo="MerchantFrame" relativePoint="LEFT">
+						<Offset><AbsDimension x="25" y="-147"/></Offset>
+					</Anchor>
+				</Anchors> 
+				<Scripts>
+					<OnClick>     
+						EnableLoopSale();
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		
+		
+		
+	</Frame>
+</Ui>

@@ -1,0 +1,134 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" 
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                   xsi:schemaLocation="http://www.blizzard.com/wow/ui/ 
+                   ..\..\FrameXML\UI.xsd">
+
+	<Script file="SmackTalk.lua"/>
+	<Script file="SmackTalkUI.lua"/>
+
+	<!-- DropDown Menu Template for alll the little drop downs -->
+	<Frame name="SmackDropdownTemplate" inherits="UIDropDownMenuTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="120"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parentLabel" inherits="GameFontNormal">
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="15" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				UIDropDownMenu_Initialize(this, smack_dropDownInit)
+			</OnLoad>
+			<OnShow>
+				
+			</OnShow>
+			<OnEnter>
+			</OnEnter>
+			<OnLeave>	
+			</OnLeave>
+		</Scripts>
+	</Frame>
+
+	<EditBox name="Smack_EditBoxTemplate" autoFocus="false" inherits="InputBoxTemplate" virtual="true">
+		<!-- <Size><AbsDimension x="60" y="20"/></Size> -->
+		<Scripts>
+			<OnLoad>
+				<!-- this:SetTextColor(1,1,1) -->
+			</OnLoad>
+			<OnTextChanged>
+				printf("HI!");
+			</OnTextChanged>
+		</Scripts>
+		<Layers>
+			<Layer level="OVERLAY">
+				<FontString name="$parentLabel" inherits="GameFontNormalSmall">
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="15" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</EditBox>
+
+	<Frame name="SmackTalkMain" enableMouse="true" movable="true" toplevel="true" parent="UIParent" frameStrata="DIALOG">
+		<Scripts>
+			<OnLoad>
+				smack_CreateMenuFrames()
+			</OnLoad>
+			<OnShow>
+				
+			</OnShow>
+			<OnEvent>
+			</OnEvent>
+		</Scripts>
+		
+		<Size>
+			<AbsDimension x="500" y="350"/>
+		</Size>
+		
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		
+		<TitleRegion>
+			<Size x="500" y="50"/>
+			<Anchors><Anchor point="TOP"/></Anchors>
+		</TitleRegion>
+		
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32"/>
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32"/>
+			</EdgeSize>
+		</Backdrop>
+		
+		<!--Below the Layers is some graphical info such as the header area of the config window-->
+		<Layers>
+			<Layer level="ARTWORK">
+				<!-- <Texture file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size><AbsDimension x="1000" y="264"/></Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset><AbsDimension x="0" y="0"/></Offset>
+						</Anchor>
+					</Anchors>
+				</Texture> -->
+			</Layer>
+
+			<Layer level="OVERLAY">
+			<!-- TITLE TEXT OVERLAYED ON MAIN CONFIG WINDOW -->
+				<FontString inherits="GameFontNormalLarge" text="SmackTalk Config">
+					<Anchors>
+						<Anchor point="TOP" relativeTo="$parent">
+							<Offset><AbsDimension x="0" y="-20"/></Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+
+				
+			</Layer>
+		</Layers>
+
+		
+		<Frames>
+		</Frames>	
+	</Frame>
+</Ui>

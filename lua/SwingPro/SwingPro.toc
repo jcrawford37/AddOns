@@ -1,0 +1,7 @@
+## Interface: 11200
+## Title: SwingPro
+## Notes: Swing Timer, time that cast.
+## Author: Soul / Imagebreaker
+SwingPro.lua
+SwingPro.xml
+CustomEventRegistry.lua

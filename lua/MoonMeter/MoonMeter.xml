@@ -1,0 +1,127 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" 
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                   xsi:schemaLocation="http://www.blizzard.com/wow/ui/ 
+                   ..\..\FrameXML\UI.xsd">
+
+	<Script file="MoonMeter.lua"/>
+	
+	
+	<Frame name="MoonMeter" enableMouse="true" movable="true" toplevel="true" parent="UIParent" frameStrata="DIALOG">
+		<Scripts>
+			<OnLoad>
+				MoonMeter_OnLoad();
+			</OnLoad>
+			<OnShow>
+				
+			</OnShow>
+			<OnEvent>
+				MoonMeter_parseCombat();	
+			</OnEvent>
+		</Scripts>
+		
+		<Size>
+			<AbsDimension x="175" y="135"/>
+		</Size>
+		
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		
+		<TitleRegion>
+			<Size x="200" y="20"/>
+			<Anchors><Anchor point="TOP"/></Anchors>
+		</TitleRegion>
+		
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background"
+           edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32"/>
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32"/>
+			</EdgeSize>
+		</Backdrop>
+		
+		<!--Below the Layers is some graphical info such as the header area of the config window-->
+		<Layers>
+			<Layer level="ARTWORK">
+				<!-- <Texture file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size><AbsDimension x="252" y="66"/></Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset><AbsDimension x="0" y="12"/></Offset>
+						</Anchor>
+					</Anchors>
+				</Texture> -->
+			</Layer>
+			<Layer level="OVERLAY">
+				<Texture file="Interface\ICONS\Spell_Nature_MoonGlow">
+					<Size><AbsDimension x="121" y="34"/></Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset><AbsDimension x="0" y="7"/></Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<!-- <FontString inherits="GameFontNormal" text="MoonMeter">
+					<Anchors>
+						<Anchor point="TOP" relativeTo="$parent"></Anchor>
+					</Anchors>
+				</FontString> -->
+				
+				<FontString name="$parentClearCasts" inherits="GameFontNormal" text="Clear Casts: --">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent">
+							<Offset><AbsDimension x="28" y="-35"/></Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				
+				<FontString name="$parentEdwards" inherits="GameFontNormal" text="Focus Procs: --">
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentClearCasts">
+							<Offset><AbsDimension x="0" y="-12"/></Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				
+				<FontString name="$parentPercCC" inherits="GameFontNormal" text="% Clear Cast: --">
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentEdwards">
+							<Offset><AbsDimension x="0" y="-12"/></Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				
+				<FontString name="$parentPercEdwards" inherits="GameFontNormal" text="% Focus Procs: --">
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentPercCC">
+							<Offset><AbsDimension x="0" y="-12"/></Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				
+				<FontString name="$parentStarfires" inherits="GameFontNormal" text="Starfire Casts: --">
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentPercEdwards">
+							<Offset><AbsDimension x="0" y="-12"/></Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				
+				<FontString name="$parentPercSfCrit" inherits="GameFontNormal" text="% Starfire Crit: --">
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentStarfires">
+							<Offset><AbsDimension x="0" y="-12"/></Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>	
+	</Frame>
+	
+	
+</Ui>

@@ -1,0 +1,160 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" 
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                   xsi:schemaLocation="http://www.blizzard.com/wow/ui/ 
+                   ..\..\FrameXML\UI.xsd">
+
+	<Script file="TankMeter.lua"/>
+	
+	
+	<Frame name="TankMeter" enableMouse="true" movable="true" toplevel="true" parent="UIParent" frameStrata="DIALOG">
+		<Scripts>
+			<OnLoad>
+				TankMeter_OnLoad();
+			</OnLoad>
+			<OnShow>
+				
+			</OnShow>
+			<OnEvent>
+				TankMeter_parseCombat();	
+			</OnEvent>
+		</Scripts>
+		
+		<Size>
+			<AbsDimension x="180" y="195"/>
+		</Size>
+		
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		
+		<TitleRegion>
+			<Size x="200" y="20"/>
+			<Anchors><Anchor point="TOP"/></Anchors>
+		</TitleRegion>
+		
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background"
+           edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32"/>
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32"/>
+			</EdgeSize>
+		</Backdrop>
+		
+		<!--Below the Layers is some graphical info such as the header area of the config window-->
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size><AbsDimension x="250" y="64"/></Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset><AbsDimension x="0" y="12"/></Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+			
+				<FontString inherits="GameFontNormal" text="TankMeter">
+					<Anchors>
+						<Anchor point="TOP" relativeTo="$parent"></Anchor>
+					</Anchors>
+				</FontString>
+				
+				<FontString name="$parentFullBlock" inherits="GameFontNormal" text="Full Blocks: --">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent">
+							<Offset><AbsDimension x="25" y="-40"/></Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				
+				<FontString name="$parentAnyBlock" inherits="GameFontNormal" text="All Blocks: --">
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentFullBlock">
+							<Offset><AbsDimension x="0" y="-12"/></Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				
+				<FontString name="$parentDodge" inherits="GameFontNormal" text="Dodges: --">
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentAnyBlock">
+							<Offset><AbsDimension x="0" y="-12"/></Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				
+				<FontString name="$parentParry" inherits="GameFontNormal" text="Parries: --">
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentDodge">
+							<Offset><AbsDimension x="0" y="-12"/></Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				
+				<FontString name="$parentMiss" inherits="GameFontNormal" text="Misses: --">
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentParry">
+							<Offset><AbsDimension x="0" y="-12"/></Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				
+				<FontString name="$parentCrush" inherits="GameFontNormal" text="Crushing: --">
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentMiss">
+							<Offset><AbsDimension x="0" y="-12"/></Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				
+				<FontString name="$parentCrit" inherits="GameFontNormal" text="Crit: --">
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentCrush">
+							<Offset><AbsDimension x="0" y="-12"/></Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				
+				<FontString name="$parentTotalIncoming" inherits="GameFontNormal" text="Total Incoming: --">
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentCrit">
+							<Offset><AbsDimension x="0" y="-12"/></Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				
+				<FontString name="$parentTotalAvoid" inherits="GameFontNormal" text="Total Avoided:">
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentTotalIncoming">
+							<Offset><AbsDimension x="0" y="-12"/></Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				
+				<FontString name="$parentPercentAvoid" inherits="GameFontNormal" text="Percent Avoided:">
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentTotalAvoid">
+							<Offset><AbsDimension x="0" y="-12"/></Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				
+				<FontString name="$parentPercentBlock" inherits="GameFontNormal" text="Percent Avoided:">
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentPercentAvoid">
+							<Offset><AbsDimension x="0" y="-12"/></Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>	
+	</Frame>
+	
+	
+</Ui>

@@ -1,0 +1,7 @@
+## Interface: 11200
+## Title: GraySale
+## Notes: Vendor grays with one button.
+## Author: Soul / Calvito.
+## SavedVariablesPerCharacter: trashList
+GraySale.lua
+GraySale.xml

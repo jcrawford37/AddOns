@@ -1,0 +1,7 @@
+## Interface: 11200
+## Title: Tactician
+## Notes: Change weapons without bagslot macros
+## Author: Soul
+## SavedVariablesPerCharacter: weaponSets, numWeaponSets
+Tactician.lua
+Tactician.xml
