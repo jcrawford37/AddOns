@@ -1,6 +1,7 @@
 ## Interface: 11200
-## Title: East Coast US Clock!!
-## Notes: East Coast Clock Frame.
+## Title: SoulClock!!
+## Notes: Configurable little Clock Frame.
 ## Author: Soul.
+## SavedVariablesPerCharacter: local_time_offset
 SoulClock.lua
 SoulClock.xml

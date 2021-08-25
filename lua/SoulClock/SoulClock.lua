@@ -1,91 +1,65 @@
 --=================== Global Variables ==========================================
-Clock_UpdateInterval = 20;			--OnUpdate function limiter.
-Thorn_UpdateInterval = 5;			--OnUpdate function limiter.
-clockCounter = 0;						--Variable to increment with OnUpdate arg1
-thornsCounter = 0;
-tankMode = 0;
+Clock_UpdateInterval = 20;          --OnUpdate function limiter.
+clockCounter = 0;                   --Variable to increment with OnUpdate arg1
+local_time_offset = -7               --I'm MDT so offset is GMT -7 currently
+
+
 --=========== Soul Clock "OnSomething" Handlers for SoulClock.xml ===============
 function SoulClock_OnLoad()
-	SoulClock:RegisterEvent("CHAT_MSG_COMBAT_XP_GAIN");
-	SetClockString();
-	SetXPString();
+    SmackTalkMain:RegisterEvent("PLAYER_LOGIN")
+    SmackTalkMain:RegisterEvent("PLAYER_ENTERING_WORLD")
+    SoulClock:RegisterEvent("CHAT_MSG_COMBAT_XP_GAIN");
+    SetClockString();
 end
 
 function Clock_OnUpdate()
-		clockCounter = clockCounter + arg1
-		thornsCounter = thornsCounter + arg1
-		
-		if clockCounter > Clock_UpdateInterval then
-			SetClockString();
-			clockCounter = 0;
-		end 
-		
-		if thornsCounter > Thorn_UpdateInterval then
-			Check_Thorns();
-			CheckRighteousFury();
-			thornsCounter = 0;
-		end
-		
+        clockCounter = clockCounter + arg1
+        
+        if clockCounter > Clock_UpdateInterval then
+            SetClockString()
+            SetXPString()
+            clockCounter = 0
+        end     
 end
 
+--========== Event Handler =====================
 function SoulClock_EventHandler()
-	if event == "CHAT_MSG_COMBAT_XP_GAIN" then
-		SetXPString();
-	end
-		
+    if event == "CHAT_MSG_COMBAT_XP_GAIN" then
+        SetXPString();
+    end
+        
 end
 
-
---==================== Soul Clock functions ==================================
-function SetTankMode(tankVal)
-	if (tankVal == "true") then
-		tankMode = 1
-	elseif (tankVal == "false") then
-		tankMode = 0
-	end
+--=========== Set your GMT offset for your timezone ================
+function SetGmtOffset(new_time_offset)
+    printf("You adjusted your clock to GMT"..new_time_offset)
+    local_time_offset = new_time_offset
+    SetClockString()
 end
 
-function Check_Thorns()
-	if not buffed("Thorns") and buffed("Dire Bear Form") then
-		--SendChatMessage("Thorns is gone", "WHISPER", "Common", "fibes");
-		PrintColor(180,255,0,"Thorns is gone!")
-	end
-end
-
-
-function CheckRighteousFury()
-	if (tankMode==1) and not buffed("Righteous Fury") and (UnitHealth("player") <= 0)then
-		PrintColor(180,255,0,"Righteous Fury is gone!")
-	end
-end
-
-
-
+--=========== Get Server Time, convert to your local time ==============
 function SetClockString()
-	local hh, mm = GetGameTime();  -- Get hours and minutes from Nostalrius Server
-	local am_pm = "AM";
-	
-	
-	if (hh >= 18) or (hh <= 6) then			   -- Set AM or PM string		
-		am_pm = "PM";
-	end
-	
-	if (hh <= 6) then			   -- Put the hours into EST
-		hh = hh + 6;
-	elseif (hh > 18) then		   -- Let's keep it in 12HR format shall we?
-		hh = hh - 18;
-	else
-		hh = hh - 6;
-	end
-	--==== Set the clock string that displays in the little clock box =====--
-	SoulClockClockString:SetText(string.format("%d:%02d %s", hh, mm, am_pm));
+    local hh, mm = GetGameTime();  -- Get hours and minutes from Server
+    
+    -- put hours variable into local time
+    hh = hh + local_time_offset
+
+    -- If server time is next morning
+    -- wrap around so that you don't get a negative hour value
+    if hh <= 0 then
+        hh = hh + 12
+    end
+
+    --==== Set the clock string that displays in the little clock box =====--
+    SoulClockClockString:SetText(string.format("%d:%02d", hh, mm));
 end
 
+--============= Set the String of % of XP ====================
 function SetXPString()
-	local currentXP = UnitXP("player")
-	local maxXP = UnitXPMax("Player")
-	local percentXP = (currentXP / maxXP)*100
-	
-	SoulClockXPString:SetText(string.format("XP: %.1f %%", percentXP));
+    local currentXP = UnitXP("player")
+    local maxXP = UnitXPMax("Player")
+    local percentXP = (currentXP / maxXP)*100
+    
+    SoulClockXPString:SetText(string.format("XP: %.1f %%", percentXP));
 end
 
