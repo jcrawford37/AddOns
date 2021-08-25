@@ -3,7 +3,7 @@
 
 
 --=================== Global Variables ==========================================
-GraySaleUpdateInterval = 1.0;			--OnUpdate function limiter.
+GraySaleUpdateInterval = 0.6;			--OnUpdate function limiter.
 GraySaleCounter = 0;					--Variable to increment with OnUpdate arg1
 graySaleDebug = false;					--Set to true for extra, helpful printf's
 LoopSellEnable = false;
