@@ -10,6 +10,15 @@ function SoulClock_OnLoad()
     SmackTalkMain:RegisterEvent("PLAYER_ENTERING_WORLD")
     SoulClock:RegisterEvent("CHAT_MSG_COMBAT_XP_GAIN");
     SetClockString();
+
+    SLASH_SCLOCKGMT1 = "/setgmt"
+    local function SetGmtSlash(msg, editbox)
+        SetGmtOffset(msg)
+    end
+    
+    -- Register function to slash command
+    SlashCmdList["SCLOCKGMT"] = SetGmtSlash
+
 end
 
 function Clock_OnUpdate()
