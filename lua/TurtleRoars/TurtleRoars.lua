@@ -64,18 +64,18 @@ function TurtleRoars_OnEvent()
 	--event, arg1, arg2 variables passed in by frame
 	--arg1 = Text of the emote example: You roar with bestial vigor. So fierce!
 	--arg2 = Player Name that emoted. example: Souldoubt
-  	printf(event)
-	if arg1 ~= nil then
-		printf(arg1)
-	end
+    --printf(event)
+	-- if arg1 ~= nil then
+	-- 	printf(arg1)
+	-- end
 
-	if arg2 ~= nil then
-		printf(arg2)
-	end
+	-- if arg2 ~= nil then
+	-- 	printf(arg2)
+	-- end
 
-	if arg3 ~= nil then
-		printf(arg3)
-	end
+	-- if arg3 ~= nil then
+	-- 	printf(arg3)
+	-- end
 
 	-- Don't handle Events.
 	if not tr_enable then
