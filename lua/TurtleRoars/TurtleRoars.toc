@@ -1,0 +1,6 @@
+## Interface: 11200
+## Title: Turtle Roars
+## Notes: Plays actual roar soundfiles for /roar emote
+## Author: Souldoubt
+TurtleRoars.lua
+TurtleRoars.xml
