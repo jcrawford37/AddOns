@@ -26,7 +26,7 @@ function TurtleRoars_OnLoad()
 
 	TurtleRoarsMain:RegisterEvent("CHAT_MSG_TEXT_EMOTE")
 	TurtleRoarsMain:RegisterEvent("CHAT_MSG_EMOTE")
-    TurtleRoarsMain:RegisterEvent("CHAT_MSG_SYSTEM")
+    --TurtleRoarsMain:RegisterEvent("CHAT_MSG_SYSTEM")
 
 end
 
@@ -81,18 +81,21 @@ function TurtleRoars_OnEvent()
 	if not tr_enable then
 		return
 	end
+
+
+   
+    -- CHAT_MSG_TEXT_EMOTE is /roar is custom emote using /e that contains the word roar
+	if event == "CHAT_MSG_TEXT_EMOTE" or event=="CHAT_MSG_EMOTE" then
+		-- Make sure that was a roar we just heard.
+		incoming_emote_str = string.lower(arg1)
 	
-	-- Make sure that was a roar we just heard.
-	incoming_emote_str = string.lower(arg1)
-	if string.find(incoming_emote_str, "roar") then
-		is_roar = true
+		if string.find(incoming_emote_str, "roar") ~= nil then
+			TargetMethodRoar(arg2)
+			--printf("Is Roar was true")
+		end
+		
 	end
     
-    -- CHAT_MSG_TEXT_EMOTE is /roar is custom emote using /e that contains the word roar
-	if is_roar==true and event == "CHAT_MSG_TEXT_EMOTE" or event == "CHAT_MSG_EMOTE" then
-		TargetMethodRoar(arg2)
-	end
-
 	if event == "CHAT_MSG_SYSTEM" then
 		-- Check if it was a /who return. Seems gross,
 		-- but I'm tired and it works
@@ -137,10 +140,6 @@ end
 --===============================================================================
 --==                    Utility Functions                                      ==
 --===============================================================================
-function Splitter(s, delimiter)
-
-end
-
 function printf(guts)
 	DEFAULT_CHAT_FRAME:AddMessage(guts);
 end
